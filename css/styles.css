@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    gap: 10vw;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 10vh;
+}
+
+.grid {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+.grid-element {
+    background-color: white;
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-element p {
+    font-size: 2rem;
+}
+
+.actionable {
+    cursor: pointer;
+    background-color: #c0dca6;
+}
+
+p {
+    cursor: default;
+}
+
+.actionable p {
+    cursor: pointer;
+}
+
+.actionable:hover {
+    background-color: #72db10;
+}
+
+.actioned {
+    background-color: rgba(114, 219, 16,  0.5)
+}
+
+.controls {
+    font-size: 1.3rem;
+    padding: 40px;
+    width: 500px;
+    background-color: #72db10;
+}
+
+.buffer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.buffer-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.buffer-element {
+    padding: 20px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+}

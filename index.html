@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Protocol</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div id="displayBox">
+            <div class="grid"></div>
+        </div>
+
+        <div class="controls">
+            <div class="buffer">
+                <div class="buffer-title">Buffer</div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <script src="js/grid.js"></script>
+    <script src="js/game.js"></script>
+    <script>
+
+        let game = new Game(displayBox);
+
+        game.init();
+
+    </script>
+
+</body>
+</html>
