@@ -1,19 +1,23 @@
 class Game {
     constructor(board = document.body, {difficulty = 'med', paths = 1} = {}) {
         this.options = {difficulty, paths};
-        this.grid = new Grid(board);
-        this.actionedElements = new Set(); // Usamos un conjunto para almacenar los elementos actioned para una búsqueda más eficiente
-        this.eventListeners = new Map(); // Usamos un Map para almacenar los event listeners asociados a cada elemento
+        this.gameGrid = new Grid(board);
+        this.sequencesGrid = new Grid(document.querySelector('.sequences'));
+        this.actionedElements = new Set();
+        this.eventListeners = new Map();
         this.buffer = [];
+        this.sequences = [];
+        this.initGame();
     }
 
-    init() {
+    initGame() {
         switch (this.options.difficulty) {
             case 'easy':
                 // Implementar para dificultad fácil
                 break;
             case 'med':
-                this.mediumGame();
+                this.setmediumGame();
+                this.setMediumSequences();
                 break;
             case 'hard':
                 // Implementar para dificultad difícil
@@ -21,16 +25,27 @@ class Game {
         }
     }
 
-    createGrid({gridCols, gridRows}) {
-        this.grid.createTable(gridCols, gridRows);
-        this.grid.draw();
-        return this.grid.elements;
+    setMediumSequences() {
+        let rows = 3;
+        let depth = [2, 3]
+        this.initializeSequences(rows, depth);
+        this.asignSequences();
+        this.createSequencesGrid(rows, depth);
+
+        this.updateSequencesGrid();
+
     }
 
-    mediumGame() {
-        let gameGrid = this.createGrid({gridRows: 6, gridCols: 7});
+    setmediumGame() {
+        let gameGrid = this.createGameGrid({gridRows: 6, gridCols: 7});
         let direction = 'h';
         this.setLineToActionable(direction, gameGrid, 0, 0, true);
+    }
+
+    createGameGrid({gridCols, gridRows}) {
+        this.gameGrid.createTable(gridCols, gridRows);
+        this.gameGrid.draw();
+        return this.gameGrid.elements;
     }
 
     setLineToActionable(direction, gameGrid, elementRowIndex, elementColIndex, firstRound = false) {
@@ -128,4 +143,39 @@ class Game {
             }
         });
     }
+
+    initializeSequences(rows, depth) {
+        for (let i = 0; i < rows; i++) {
+            let asignedDepth = someNumberBetween(depth)
+            this.sequences.push(new Array(asignedDepth).fill(0));
+        }
+    }
+    
+    asignSequences(){
+        for (let i = 0; i < this.sequences.length; i++){
+            for (let j = 0; j < this.sequences[i].length; j++){
+                this.sequences[i][j] = this.gameGrid.elementValues[parseInt(Math.random() * this.gameGrid.elementValues.length)];
+            }
+        }
+    }
+
+    createSequencesGrid(rows, depth) {
+        this.sequencesGrid.createTable(Math.max(depth[0], depth[1]), rows);
+        this.updateSequencesGrid()
+        this.sequencesGrid.draw();
+    }
+
+    updateSequencesGrid() {
+        for (let i = 0; i < this.sequencesGrid.values.length; i++) {
+            for (let j = 0; j < this.sequencesGrid.values[i].length; j++) {
+                // Verificar si la fila y la columna existen en this.sequences
+                if (this.sequences[i] !== undefined && this.sequences[i][j] !== undefined) {
+                    this.sequencesGrid.values[i][j].innerHTML = this.sequences[i][j];
+                } else {
+                    this.sequencesGrid.values[i][j].innerHTML = '';
+                }
+            }
+        }
+    }
+
 }

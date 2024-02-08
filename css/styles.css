@@ -5,14 +5,31 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.container{
+body {
     background-color: #222;
+}
+
+.info {
+    padding: 10px;
     display: flex;
     justify-content: center;
-    gap: 10vw;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 100px;
+}
+
+.gamePanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
-    min-height: 100vh;
-    padding: 10vh;
+    gap: 30px;
 }
 
 .grid {
@@ -24,11 +41,15 @@
 
 .grid-element {
     background-color: white;
-    width: 10vh;
-    height: 10vh;
+    width: 8vh;
+    height: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.sequences .grid-element {
+    background-color: rgb(91, 161, 91);
 }
 
 .grid-element p {

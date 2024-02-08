@@ -8,28 +8,33 @@
 </head>
 <body>
 
-    <div class="container">
-        <div id="displayBox">
-            <div class="grid"></div>
-        </div>
-
+    <div class="info">
         <div class="controls">
             <div class="buffer">
                 <div class="buffer-title">Buffer</div>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="gamePanel">
+            <div id="displayBox">
+                <div class="grid"></div>
+            </div>
+    
+            <div class="sequences"></div>
+        </div>
 
     </div>
 
     
-
+    <script src="js/utils.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/game.js"></script>
     <script>
 
         let game = new Game(displayBox);
-
-        game.init();
 
     </script>
 

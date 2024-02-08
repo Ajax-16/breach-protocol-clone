@@ -5,6 +5,7 @@ class Grid {
         this.parent.className = 'grid';
         this.elements = [];
         this.elementValues = elementValues;
+        this.values = [];
     }
 
     initializeElements(cols, rows) {
@@ -27,6 +28,7 @@ class Grid {
         this.parent.appendChild(newElement);
         let value = document.createElement('p');
         value.innerHTML = this.elementValues[parseInt(Math.random()* this.elementValues.length)]
+        this.values[rowIndex][colIndex] = value;
         newElement.appendChild(value);
     }
 
@@ -34,6 +36,7 @@ class Grid {
         this.parent.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
 
         this.elements = this.initializeElements(cols, rows);
+        this.values = this.initializeElements(cols, rows);
         
         for(let i = 0; i < rows; i++) {
             for (let j = 0; j < cols; j++) {
